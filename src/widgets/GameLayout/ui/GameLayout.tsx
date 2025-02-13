@@ -7,12 +7,12 @@ export function GameLayout() {
       <Header />
       <main className={styles.main}>
         <div className={styles.content}>
-          <aside className={styles.filters}>
-            <GameFilters />
-          </aside>
           <section className={styles.games}>
             <GameList />
           </section>
+          <aside className={styles.filters}>
+            <GameFilters />
+          </aside>
         </div>
       </main>
     </div>

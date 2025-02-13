@@ -1,2 +1,1 @@
-export * from "./GameList";
 export * from "./GameCard";

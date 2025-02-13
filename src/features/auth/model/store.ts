@@ -9,6 +9,7 @@ interface AuthState {
   login: (username: string, password: string) => Promise<void>;
   checkAuth: () => Promise<boolean>;
   logout: () => Promise<void>;
+  setError: (error: string | string[] | null) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -21,7 +22,6 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       await loginUser({ username, password });
       set({ isAuth: true, error: null });
-      console.log("Auth state after login:", { isAuth: true });
     } catch (err) {
       set({ error: err.message, isAuth: false });
     } finally {
@@ -55,4 +55,6 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({ isLoading: false });
     }
   },
+
+  setError: (error) => set({ error }),
 }));

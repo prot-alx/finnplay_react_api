@@ -2,6 +2,11 @@ import { create } from "zustand";
 import { GameData } from "@/shared/api";
 import { Game, Group, Provider } from "@/entities";
 
+interface Filters {
+  groupId: number | null;
+  providerId: number | null;
+}
+
 interface GamesState {
   games: Game[];
   providers: Provider[];
@@ -15,6 +20,10 @@ interface GamesState {
   getGamesByProvider: (providerId: number) => Game[];
   getGamesByGroup: (groupId: number) => Game[];
   getProviderById: (providerId: number) => Provider | undefined;
+  // Фильтры
+  filters: Filters;
+  setFilter: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
+  resetFilters: () => void;
 }
 
 export const useGamesStore = create<GamesState>((set, get) => ({
@@ -64,5 +73,23 @@ export const useGamesStore = create<GamesState>((set, get) => ({
   getProviderById: (providerId: number) => {
     const { providers } = get();
     return providers.find((provider) => provider.id === providerId);
+  },
+
+  filters: {
+    groupId: null,
+    providerId: null,
+  },
+
+  setFilter: (key, value) => {
+    set((state) => ({
+      filters: {
+        ...state.filters,
+        [key]: value,
+      },
+    }));
+  },
+
+  resetFilters: () => {
+    set({ filters: { groupId: null, providerId: null } });
   },
 }));

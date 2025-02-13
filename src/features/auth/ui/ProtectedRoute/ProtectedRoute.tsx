@@ -9,12 +9,10 @@ interface ProtectedRouteProps {
 export function ProtectedRoute({ children }: Readonly<ProtectedRouteProps>) {
   const location = useLocation();
   const { isAuth, isLoading, checkAuth } = useAuthStore();
-  console.log('ProtectedRoute state:', { isAuth, isLoading });
 
   useEffect(() => {
     const verifyAuth = async () => {
-      const isAuthenticated = await checkAuth();
-      console.log("Auth status:", isAuthenticated);
+      await checkAuth();
     };
     verifyAuth();
   }, [location.pathname, checkAuth]);

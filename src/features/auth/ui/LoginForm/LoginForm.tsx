@@ -1,11 +1,13 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router";
-import { AuthLoginInput } from "@/shared/ui/AuthLoginInput/AuthLoginInput";
-import { AuthPasswordInput } from "@/shared/ui/AuthPasswordInput/AuthPasswordInput";
-import { Button } from "@/shared/ui/Button/Button";
-import { FormError } from "@/shared/ui/FormError/FormError";
 import { useAuthStore } from "../../model/store";
 import styles from "./LoginForm.module.scss";
+import {
+  AuthLoginInput,
+  AuthPasswordInput,
+  Button,
+  FormError,
+} from "@/shared/ui";
 
 export function LoginForm() {
   const navigate = useNavigate();

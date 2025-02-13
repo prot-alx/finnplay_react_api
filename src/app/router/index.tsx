@@ -4,7 +4,7 @@ import { useAuthStore } from "@/features/auth";
 
 export function AppRouter() {
   const { isAuth, isLoading } = useAuthStore();
-  console.log("Router auth state:", { isAuth, isLoading });
+  
   if (isLoading) {
     return <div>Loading...</div>;
   }
