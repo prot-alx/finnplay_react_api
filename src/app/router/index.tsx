@@ -1,10 +1,13 @@
 import { Routes, Route, Navigate } from "react-router";
-import { GamesPage } from "@/pages/GamesPage/GamesPage";
-import { LoginPage } from "@/pages/LoginPage/LoginPage";
-import { NotFoundPage } from "@/pages/NotFoundPage/NotFoundPage";
+import { LoginPage, GamesPage, NotFoundPage } from "@/pages";
+import { useAuthStore } from "@/features/auth";
 
 export function AppRouter() {
-  const isAuth = false;
+  const { isAuth, isLoading } = useAuthStore();
+  console.log("Router auth state:", { isAuth, isLoading });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Routes>

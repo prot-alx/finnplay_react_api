@@ -4,41 +4,28 @@ import { AuthLoginInput } from "@/shared/ui/AuthLoginInput/AuthLoginInput";
 import { AuthPasswordInput } from "@/shared/ui/AuthPasswordInput/AuthPasswordInput";
 import { Button } from "@/shared/ui/Button/Button";
 import { FormError } from "@/shared/ui/FormError/FormError";
+import { useAuthStore } from "../../model/store";
 import styles from "./LoginForm.module.scss";
-import { loginUser } from "@/api/auth";
-
-interface ErrorResponse {
-  message: string | string[];
-  error?: string;
-  statusCode: number;
-}
 
 export function LoginForm() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | string[] | null>(null);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { login, isLoading, error, isAuth } = useAuthStore();
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   useEffect(() => {
-    return () => {
-      setError(null);
-    };
-  }, []);
+    if (isAuth) {
+      navigate("/games");
+    }
+  }, [isAuth, navigate]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
 
     try {
-      await loginUser({ username, password });
-      navigate("/games");
+      await login(username, password);
     } catch (err) {
-      const errorResponse = err as ErrorResponse;
-      setError(errorResponse.message);
-    } finally {
-      setLoading(false);
+      console.error("Login error:", err);
     }
   };
 
@@ -56,8 +43,8 @@ export function LoginForm() {
         <AuthLoginInput value={username} onChange={handleUsernameChange} />
         <AuthPasswordInput value={password} onChange={handlePasswordChange} />
       </div>
-      <Button type="submit" disabled={loading || !username || !password}>
-        {loading ? "Загрузка..." : "Login"}
+      <Button type="submit" disabled={isLoading || !username || !password}>
+        {isLoading ? "Загрузка..." : "Login"}
       </Button>
       <FormError error={error} />
     </form>
