@@ -1,1 +1,0 @@
-Get-ChildItem -Path . -Filter *.js* -Recurse | Remove-Item

@@ -1,3 +1,15 @@
-.container {
-  max-width: 412px;
+@use "@/shared/styles/index" as styles;
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border: 1px solid styles.$blacks_50;
+  border-radius: 8px;
+  padding: 32px;
+}
+
+.resetMenu {
+  display: flex;
+  justify-content: space-between;
 }

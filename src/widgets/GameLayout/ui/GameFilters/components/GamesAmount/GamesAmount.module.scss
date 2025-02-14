@@ -1,0 +1,7 @@
+@use "@/shared/styles/index" as styles;
+
+.amount {
+  display: flex;
+  color: styles.$blacks_semi;
+  align-items: center;
+}

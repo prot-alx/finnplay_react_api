@@ -1,5 +1,6 @@
 import { useAuthStore } from "@/features/auth/model/store";
 import { useNavigate } from "react-router";
+import styles from "./LogoutButton.module.scss";
 
 export function LogoutButton() {
   const logout = useAuthStore((state) => state.logout);
@@ -14,5 +15,9 @@ export function LogoutButton() {
     }
   };
 
-  return <button onClick={handleLogout}>Выйти</button>;
+  return (
+    <button className={styles.logoutButton} onClick={handleLogout}>
+      Logout
+    </button>
+  );
 }

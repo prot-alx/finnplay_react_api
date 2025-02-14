@@ -1,0 +1,17 @@
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: darkolivegreen;
+  padding: 0 82px;
+
+  @media (max-width: 428px) {
+    padding: 0 24px;
+  }
+}
+
+.logo {
+  display: block;
+  width: 70px;
+}

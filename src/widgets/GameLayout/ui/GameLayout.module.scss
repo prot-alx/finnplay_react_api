@@ -1,16 +1,19 @@
-.layout {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
 .main {
-  flex: 1;
-  padding: 20px;
+  padding: 75px 0px 0px 0px;
 }
 
 .content {
-  display: grid;
-  grid-template-columns: 1fr 300px;
+  display: flex;
   gap: 20px;
+  justify-content: center;
+}
+
+.games {
+  width: 844px;
+  min-width: 0;
+}
+
+.filters {
+  width: 412px;
+  min-width: 0;
 }

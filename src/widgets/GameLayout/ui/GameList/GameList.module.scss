@@ -1,19 +1,29 @@
+@use "@/shared/styles/index" as styles;
+
 .list {
+  width: 100%;
   display: grid;
-  max-width: 844px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  padding: 20px;
+  &[data-columns="2"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &[data-columns="3"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &[data-columns="4"] {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .error {
-  color: #dc3545;
+  color: styles.$tech_error;
   text-align: center;
   padding: 20px;
 }
 
 .skeleton {
-  aspect-ratio: 16/9;
   background: linear-gradient(
     90deg,
     rgba(227,227,227,1) 0%,

@@ -1,9 +1,10 @@
+@use "@/shared/styles/index" as styles;
+
 .button {
   width: 100%;
   height: 64px;
   padding: 10px;
-  background-color: #FDBC11;
-  color: #2B2B2B;
+  background-color: styles.$palette_yellow;
   border: none;
   border-radius: 4px;
   font-size: 16px;
@@ -11,11 +12,10 @@
   transition: background-color 0.2s;
 
   &:hover:not(:disabled) {
-    background-color: #FDBC11;
+    background-color: styles.$palette_yellow;
   }
 
   &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    opacity: 0.5;
   }
 }

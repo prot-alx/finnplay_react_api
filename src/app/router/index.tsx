@@ -3,12 +3,8 @@ import { LoginPage, GamesPage, NotFoundPage } from "@/pages";
 import { useAuthStore } from "@/features/auth";
 
 export function AppRouter() {
-  const { isAuth, isLoading } = useAuthStore();
+  const { isAuth } = useAuthStore();
   
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <Routes>
       <Route
