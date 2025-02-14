@@ -24,6 +24,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({ isAuth: true, error: null });
     } catch (err) {
       set({ error: err.message, isAuth: false });
+      throw err;
     } finally {
       set({ isLoading: false });
     }

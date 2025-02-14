@@ -23,7 +23,6 @@ export function LoginForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
       await login(username, password);
     } catch (err) {

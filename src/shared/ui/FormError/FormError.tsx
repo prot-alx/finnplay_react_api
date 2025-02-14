@@ -6,7 +6,7 @@ interface FormErrorProps {
 
 export const FormError = ({ error }: FormErrorProps) => {
   if (!error) return null;
-
+  
   // Если error - массив
   if (Array.isArray(error)) {
     return (
