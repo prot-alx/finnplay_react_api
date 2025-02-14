@@ -15,7 +15,7 @@ export function ProtectedRoute({ children }: Readonly<ProtectedRouteProps>) {
       await checkAuth();
     };
     verifyAuth();
-  }, [location.pathname, checkAuth]);
+  }, [location.pathname]);
 
   if (isLoading) {
     return <div>Loading...</div>;
