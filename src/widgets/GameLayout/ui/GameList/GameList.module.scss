@@ -16,6 +16,10 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
+  @include desktop {
+    margin-top: 200px;
+  }
+
   @include mobile {
     &[data-columns="3"],
     &[data-columns="4"] {

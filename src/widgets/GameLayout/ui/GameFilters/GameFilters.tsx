@@ -2,14 +2,13 @@ import { useState } from "react";
 import burger from "@/shared/images/burger.svg";
 import styles from "./GameFilters.module.scss";
 import { SearchFilter } from "./components";
-import { FilterList } from "./FiltersAccordion/FilterList";
+import { FilterList } from "./FilterList/FilterList";
 
 export function GameFilters() {
   const [isShowFilters, setIsShowFilters] = useState(false);
   return (
     <div className={styles.filters}>
       <SearchFilter />
-      <FilterList isVisible={isShowFilters} />
       <button
         className={styles.showSwitch}
         onClick={() => setIsShowFilters(!isShowFilters)}
@@ -25,6 +24,7 @@ export function GameFilters() {
         />
         <span>{isShowFilters ? "Hide filters" : "Show filters"}</span>
       </button>
+      <FilterList isVisible={isShowFilters} />
     </div>
   );
 }

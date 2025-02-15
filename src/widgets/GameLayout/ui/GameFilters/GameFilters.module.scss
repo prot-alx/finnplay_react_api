@@ -9,20 +9,21 @@
   gap: 32px;
   border: 1px solid $blacks_50;
   border-radius: 8px;
+
+  @include desktop {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 46px);
+    background: $blacks_light;
+    z-index: 100;
+  }
 }
 
 .showSwitch {
   display: none;
-}
 
-@include desktop {
-  .filters {
-    position: relative;
-    z-index: 100;
-    padding: 32px 0;
-  }
-
-  .showSwitch {
+  @include desktop {
     display: flex;
     align-self: center;
     background-color: $blacks_light;
@@ -31,8 +32,11 @@
     color: $tech_links;
     cursor: pointer;
     font-size: 16px;
+    order: 1;
   }
+}
 
+@include desktop {
   .burgerIcon {
     width: 14px;
     height: 14px;

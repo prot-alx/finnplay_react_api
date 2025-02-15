@@ -2,6 +2,9 @@
 
 .main {
   margin: 75px 24px 0px 24px;
+  @include desktop {
+    margin: 24px;
+  }
 }
 
 .content {
