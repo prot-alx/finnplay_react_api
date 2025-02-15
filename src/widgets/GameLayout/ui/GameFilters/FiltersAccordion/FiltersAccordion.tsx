@@ -2,9 +2,9 @@ import {
   ProviderFilter,
   GroupFilter,
   SortFilter,
-  GridSelector,
   GamesAmount,
   ResetAll,
+  ColumnSelector,
 } from "../components";
 import styles from "./FiltersAccordion.module.scss";
 
@@ -23,7 +23,7 @@ export function FiltersAccordion({
       <ProviderFilter />
       <GroupFilter />
       <SortFilter />
-      <GridSelector />
+      <ColumnSelector />
       <div className={styles.resetMenu}>
         <GamesAmount />
         <ResetAll />
