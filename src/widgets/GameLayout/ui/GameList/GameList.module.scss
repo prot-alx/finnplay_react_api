@@ -1,4 +1,4 @@
-@use "@/shared/styles/index" as styles;
+@use "@/shared/styles" as *;
 
 .list {
   width: 100%;
@@ -15,10 +15,17 @@
   &[data-columns="4"] {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  @include mobile {
+    &[data-columns="3"],
+    &[data-columns="4"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 }
 
 .error {
-  color: styles.$tech_error;
+  color: $tech_error;
   text-align: center;
   padding: 20px;
 }

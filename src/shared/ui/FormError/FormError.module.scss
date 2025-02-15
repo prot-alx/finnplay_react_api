@@ -1,4 +1,4 @@
-@use "@/shared/styles/index" as styles;
+@use "@/shared/styles" as *;
 
 .errorList {
   margin-top: 10px;
@@ -6,7 +6,7 @@
 }
 
 .errorItem {
-  color: styles.$tech_error;
+  color: $tech_error;
   font-size: 14px;
   margin-bottom: 4px;
   
@@ -16,7 +16,7 @@
 }
 
 .error {
-  color: styles.$tech_error;
+  color: $tech_error;
   font-size: 14px;
   margin-top: 10px;
 }

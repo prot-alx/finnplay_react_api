@@ -1,4 +1,4 @@
-@use "@/shared/styles/index" as styles;
+@use "@/shared/styles" as *;
 @import url('https://fonts.googleapis.com/css2?family=Prompt&family=Raleway:wght@400;500;700&display=swap');
 
 
@@ -45,8 +45,8 @@ body{
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
-	color: styles.$blacks_dark;
-	background: styles.$blacks_light;
+	color: $blacks_dark;
+	background: $blacks_light;
 	font-family: 'Prompt', sans-serif;
 }
 
@@ -72,7 +72,7 @@ button::-moz-focus-inner{
 a, 
 a:visited{
 	text-decoration: none; 
-	color: styles.$blacks_dark;
+	color: $blacks_dark;
 }
 
 a:hover{

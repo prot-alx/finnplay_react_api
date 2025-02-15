@@ -1,4 +1,4 @@
-@use "@/shared/styles/index" as styles;
+@use "@/shared/styles" as *;
 
 .inputWrapper {
   position: relative;
@@ -9,14 +9,14 @@
   width: 100%;
   height: 64px;
   padding: 30.5px 16px 14.5px 16px;
-  border: 1px solid styles.$blacks_50;
+  border: 1px solid $blacks_50;
   border-radius: 4px;
   font-size: 16px;
   box-sizing: border-box;
 
   &:focus {
     outline: none;
-    border-color: styles.$tech_links;
+    border-color: $tech_links;
   }
 
   &::placeholder {
@@ -30,7 +30,7 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 16px;
-  color: styles.$blacks_semi;
+  color: $blacks_semi;
   pointer-events: none;
   transition: all 0.2s ease;
   background: transparent;

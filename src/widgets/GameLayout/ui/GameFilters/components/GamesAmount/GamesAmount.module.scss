@@ -1,7 +1,7 @@
-@use "@/shared/styles/index" as styles;
+@use "@/shared/styles" as *;
 
 .amount {
   display: flex;
-  color: styles.$blacks_semi;
+  color: $blacks_semi;
   align-items: center;
 }

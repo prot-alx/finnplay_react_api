@@ -17,7 +17,7 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <div className={styles.container}>
+      <div className={styles.appContainer}>
         <AppRouter />
       </div>
     </BrowserRouter>

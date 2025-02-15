@@ -1,4 +1,4 @@
-@use "@/shared/styles/index" as styles;
+@use "@/shared/styles" as *;
 
 .input {
   width: 100%;
@@ -15,6 +15,6 @@
   }
 
   &::placeholder {
-    color: styles.$blacks_semi;
+    color: $blacks_semi;
   }
 }

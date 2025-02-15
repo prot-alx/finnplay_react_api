@@ -1,11 +1,11 @@
-@use "@/shared/styles/index" as styles;
+@use "@/shared/styles" as *;
 
 .layout {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: styles.$blacks_50;
+  background-color: $blacks_50;
 }
 
 .container {
@@ -15,8 +15,12 @@
   gap:40px;
   flex-direction: column;
   align-items: center;
-  background-color: styles.$blacks_light;
+  background-color: $blacks_light;
   border-radius: 4px;
+  
+  @include mobile {
+    width: 380px;
+  }
 }
 
 .logo {

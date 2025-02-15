@@ -1,6 +1,14 @@
-@use "@/shared/styles/index" as styles;
+@use "@/shared/styles" as *;
 
 .logoutButton {
-  color: styles.$tech_error;
+  display: inline-flex;
+  align-items: center;
+  color: $tech_error;
   background: transparent;
+}
+
+.profileIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
 }

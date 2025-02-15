@@ -1,5 +1,6 @@
 import { useAuthStore } from "@/features/auth/model/store";
 import { useNavigate } from "react-router";
+import profileIcon from "@/shared/images/icons__profile_16px.svg";
 import styles from "./LogoutButton.module.scss";
 
 export function LogoutButton() {
@@ -16,8 +17,18 @@ export function LogoutButton() {
   };
 
   return (
-    <button className={styles.logoutButton} onClick={handleLogout}>
-      Logout
+    <button
+      type="button"
+      className={styles.logoutButton}
+      onClick={handleLogout}
+    >
+      <img
+        className={styles.profileIcon}
+        src={profileIcon}
+        alt=""
+        aria-hidden="true"
+      />
+      <span>Logout</span>
     </button>
   );
 }
