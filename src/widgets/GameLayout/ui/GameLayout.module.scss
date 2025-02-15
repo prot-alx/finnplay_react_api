@@ -20,7 +20,7 @@
   min-width: 0;
 }
 
-@include mobile {
+@include desktop {
   .content {
     flex-direction: column;
     gap: 16px;

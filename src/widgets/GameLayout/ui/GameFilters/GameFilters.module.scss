@@ -15,7 +15,7 @@
   display: none;
 }
 
-@include mobile {
+@include desktop {
   .filters {
     position: relative;
     z-index: 100;

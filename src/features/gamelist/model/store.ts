@@ -14,28 +14,31 @@ interface GamesState {
   games: Game[];
   providers: Provider[];
   groups: Group[];
+  filteredGames: Game[];
   isLoading: boolean;
   error: string | null;
-
-  fetchGameData: () => Promise<void>;
-
+  sort: SortType;
   filters: Filters;
+  fetchGameData: () => Promise<void>;
   setFilters: (updates: Partial<Filters>) => void;
   resetFilters: () => void;
-
-  sort: SortType;
   setSort: (type: SortType) => void;
-
-  filteredGames: () => Game[];
+  updateFilteredGames: () => void;
 }
 
 export const useGamesStore = create<GamesState>((set, get) => ({
   games: [],
   providers: [],
   groups: [],
+  filteredGames: [],
   isLoading: false,
   error: null,
   sort: null,
+  filters: {
+    groupIds: [],
+    providerIds: [],
+    searchQuery: "",
+  },
 
   async fetchGameData() {
     set({ isLoading: true, error: null });
@@ -46,6 +49,8 @@ export const useGamesStore = create<GamesState>((set, get) => ({
         providers: data.providers,
         groups: data.groups,
       });
+      // обновляем отфильтрованные игры после получения данных
+      get().updateFilteredGames();
     } catch (err) {
       set({
         error: err instanceof Error ? err.message : "Error fetching games",
@@ -55,60 +60,56 @@ export const useGamesStore = create<GamesState>((set, get) => ({
     }
   },
 
-  filters: {
-    groupIds: [],
-    providerIds: [],
-    searchQuery: "",
-  },
-
-  setFilters(updates) {
-    set((state) => ({
-      filters: { ...state.filters, ...updates },
-    }));
-  },
-
-  resetFilters() {
-    set({ filters: { groupIds: [], providerIds: [], searchQuery: "" } });
-  },
-
-  setSort(type) {
-    set({ sort: type });
-  },
-
-  filteredGames() {
+  updateFilteredGames() {
     const { games, filters, groups, sort } = get();
 
-    const groupMap = new Map(groups.map((group) => [group.id, group.games]));
-    const groupGamesSet = new Set<number>();
+    // Set со всеми ID игр, которые есть хотя бы в одной группе
+    const allGroupGamesSet = new Set<number>();
+    groups.forEach((group) => {
+      group.games.forEach((gameId) => allGroupGamesSet.add(gameId));
+    });
 
+    // Set для фильтрации по выбранным группам
+    const selectedGroupGamesSet = new Set<number>();
     if (filters.groupIds.length) {
       filters.groupIds.forEach((groupId) => {
-        const gameIds = groupMap.get(groupId);
-        if (gameIds) {
-          gameIds.forEach((gameId) => groupGamesSet.add(gameId));
+        const group = groups.find((g) => g.id === groupId);
+        if (group) {
+          group.games.forEach((gameId) => selectedGroupGamesSet.add(gameId));
         }
       });
     }
 
     let filtered = games.filter((game) => {
+      // проверяем, входит ли игра хоть в какую-то группу
+      if (!allGroupGamesSet.has(game.id)) {
+        return false;
+      }
+
+      // фильтр по провайдерам
       if (
         filters.providerIds.length &&
         !filters.providerIds.includes(game.provider)
       ) {
         return false;
       }
-      if (filters.groupIds.length && !groupGamesSet.has(game.id)) {
+
+      // фильтр по выбранным группам
+      if (filters.groupIds.length && !selectedGroupGamesSet.has(game.id)) {
         return false;
       }
+
+      // поисковый фильтр
       if (
         filters.searchQuery &&
         !game.name.toLowerCase().includes(filters.searchQuery.toLowerCase())
       ) {
         return false;
       }
+
       return true;
     });
-
+    
     if (sort) {
       filtered = filtered.sort((a, b) => {
         if (sort === "a-z") return a.name.localeCompare(b.name);
@@ -119,6 +120,26 @@ export const useGamesStore = create<GamesState>((set, get) => ({
       });
     }
 
-    return filtered;
+    set({ filteredGames: filtered });
+  },
+
+  setFilters(updates) {
+    set((state) => ({
+      filters: { ...state.filters, ...updates },
+    }));
+    get().updateFilteredGames();
+  },
+
+  resetFilters() {
+    set({
+      filters: { groupIds: [], providerIds: [], searchQuery: "" },
+      sort: null,
+    });
+    get().updateFilteredGames();
+  },
+
+  setSort(type) {
+    set({ sort: type });
+    get().updateFilteredGames();
   },
 }));

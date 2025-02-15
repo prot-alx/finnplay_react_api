@@ -3,7 +3,7 @@
 .list {
   width: 100%;
   display: grid;
-  gap: 20px;
+  gap: clamp(4px, 2vw, 20px);
   &[data-columns="2"] {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -20,6 +20,9 @@
     &[data-columns="3"],
     &[data-columns="4"] {
       grid-template-columns: repeat(2, 1fr);
+    }
+    .list{ 
+      gap: 20px;
     }
   }
 }
@@ -39,5 +42,4 @@
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: 8px;
 }

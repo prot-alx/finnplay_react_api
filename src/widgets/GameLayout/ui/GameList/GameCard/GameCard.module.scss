@@ -2,17 +2,20 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .cover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .skeleton {
   position: absolute;
   inset: 0;
+  border-radius: 8px;
   background: linear-gradient(
     90deg,
     rgba(227,227,227,1) 0%,

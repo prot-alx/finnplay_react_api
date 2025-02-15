@@ -1,5 +1,5 @@
 export * from "./GamesAmount";
-export * from "./GridSelector";
+export * from "./ColumnSelector";
 export * from "./GroupFilter";
 export * from "./ProviderFilter";
 export * from "./ResetFilter";

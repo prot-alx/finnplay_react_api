@@ -13,13 +13,8 @@ export function GameCard({ game }: Readonly<GameCardProps>) {
 
   const placeholderUrl = new URL(placeholder, import.meta.url).href;
 
-  const handleImageError = (
-    e: React.SyntheticEvent<HTMLImageElement, Event>
-  ) => {
+  const handleImageError = () => {
     if (!imageError) {
-      console.warn(
-        `Image failed to load: ${e.currentTarget.src}, replacing with placeholder.`
-      );
       setImageError(true);
     }
     setIsLoading(false);
