@@ -7,7 +7,6 @@ interface FormErrorProps {
 export const FormError = ({ error }: FormErrorProps) => {
   if (!error) return null;
   
-  // Если error - массив
   if (Array.isArray(error)) {
     return (
       <div className={styles.errorList}>
@@ -20,6 +19,5 @@ export const FormError = ({ error }: FormErrorProps) => {
     );
   }
 
-  // Если error - строка
   return <p className={styles.error}>{error}</p>;
 };

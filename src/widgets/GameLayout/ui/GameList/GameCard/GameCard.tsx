@@ -1,7 +1,7 @@
-import { Game } from "@/entities";
-import styles from "./GameCard.module.scss";
-import placeholder from "@/shared/images/image-placeholder-500x500.jpg";
 import { useState } from "react";
+import { Game } from "@/entities";
+import placeholder from "@/shared/images/image-placeholder-500x500.jpg";
+import styles from "./GameCard.module.scss";
 
 interface GameCardProps {
   game: Game;

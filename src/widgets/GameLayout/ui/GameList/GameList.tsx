@@ -1,7 +1,7 @@
 import { useGamesStore } from "@/features/gamelist";
 import { GameCard } from "./GameCard";
-import styles from "./GameList.module.scss";
 import { useGrid } from "../../context";
+import styles from "./GameList.module.scss";
 
 export function GameList() {
   const filteredGames = useGamesStore(state => state.filteredGames);

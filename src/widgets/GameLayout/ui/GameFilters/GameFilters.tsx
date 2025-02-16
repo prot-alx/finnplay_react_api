@@ -1,8 +1,8 @@
 import { useState } from "react";
 import burger from "@/shared/images/burger.svg";
-import styles from "./GameFilters.module.scss";
 import { SearchFilter } from "./components";
 import { FilterList } from "./FilterList/FilterList";
+import styles from "./GameFilters.module.scss";
 
 export function GameFilters() {
   const [isShowFilters, setIsShowFilters] = useState(false);

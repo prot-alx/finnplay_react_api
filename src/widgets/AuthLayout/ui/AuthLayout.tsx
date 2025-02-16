@@ -1,5 +1,5 @@
-import styles from "./AuthLayout.module.scss";
 import logo from "@/shared/images/logo.svg";
+import styles from "./AuthLayout.module.scss";
 
 interface AuthLayoutProps {
   children: React.ReactNode;

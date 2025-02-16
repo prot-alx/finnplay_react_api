@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
-import styles from "./AuthLoginInput.module.scss";
 import { Tooltip } from "../Tooltip";
-import { usernameSchema } from "@/features/auth/model/validation/schemas";
+import { validateInput, usernameSchema } from "@/features/auth";
+import styles from "./AuthLoginInput.module.scss";
 
 interface AuthLoginInputProps {
   value: string;
@@ -12,22 +12,15 @@ export const AuthLoginInput = ({ value, onChange }: AuthLoginInputProps) => {
   const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    if (!newValue) {
-      setError(null);
-      onChange(e);
-      return;
-    }
+    const { error, event } = validateInput(e, usernameSchema, true);
+    setError(error);
+    onChange(event);
+  };
 
-    const result = usernameSchema.safeParse(newValue);
-    
-    if (!result.success) {
-      setError(result.error.issues[0].message);
-    } else {
-      setError(null);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === " ") {
+      e.preventDefault();
     }
-
-    onChange(e);
   };
 
   return (
@@ -38,6 +31,7 @@ export const AuthLoginInput = ({ value, onChange }: AuthLoginInputProps) => {
         placeholder=" "
         value={value}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         className={`${styles.input} ${error ? styles.error : ""}`}
         maxLength={20}
       />

@@ -1,5 +1,5 @@
-import { useAuthStore } from "@/features/auth/model/store";
 import { useNavigate } from "react-router";
+import { useAuthStore } from "@/features/auth/model/store";
 import profileIcon from "@/shared/images/icons__profile_16px.svg";
 import styles from "./LogoutButton.module.scss";
 

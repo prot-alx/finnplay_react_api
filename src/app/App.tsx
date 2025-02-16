@@ -1,5 +1,5 @@
-import { BrowserRouter } from "react-router";
 import { useEffect } from "react";
+import { BrowserRouter } from "react-router";
 import { AppRouter } from "./router";
 import { useAuthStore } from "@/features/auth";
 import styles from "./App.module.scss";

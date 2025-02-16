@@ -1,8 +1,9 @@
 import { ChangeEvent, useState } from "react";
-import eye from "@/shared/images/password_show_icon.svg";
 import { Tooltip } from "../Tooltip";
 import { passwordSchema } from "@/features/auth/model/validation/schemas";
+import eye from "@/shared/images/password_show_icon.svg";
 import styles from "./AuthPasswordInput.module.scss";
+import { validateInput } from "@/features/auth";
 
 interface AuthPasswordInputProps {
   value: string;
@@ -17,20 +18,15 @@ export const AuthPasswordInput = ({
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    if (!newValue) {
-      setError(null);
-      onChange(e);
-      return;
-    }
-    const result = passwordSchema.safeParse(newValue);
-    if (!result.success) {
-      setError(result.error.issues[0].message);
-    } else {
-      setError(null);
-    }
+    const { error, event } = validateInput(e, passwordSchema, true);
+    setError(error);
+    onChange(event);
+  };
 
-    onChange(e);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === " ") {
+      e.preventDefault();
+    }
   };
 
   return (
@@ -41,6 +37,7 @@ export const AuthPasswordInput = ({
         placeholder=" "
         value={value}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         className={`${styles.input} ${error ? styles.error : ""}`}
         maxLength={32}
       />
