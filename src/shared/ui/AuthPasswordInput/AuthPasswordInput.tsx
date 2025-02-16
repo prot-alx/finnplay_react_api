@@ -1,9 +1,8 @@
 import { ChangeEvent, useState } from "react";
+import { useInputValidation } from "@/features/auth";
 import { Tooltip } from "../Tooltip";
-import { passwordSchema } from "@/features/auth/model/validation/schemas";
 import eye from "@/shared/images/password_show_icon.svg";
 import styles from "./AuthPasswordInput.module.scss";
-import { validateInput } from "@/features/auth";
 
 interface AuthPasswordInputProps {
   value: string;
@@ -14,20 +13,11 @@ export const AuthPasswordInput = ({
   value,
   onChange,
 }: AuthPasswordInputProps) => {
-  const [error, setError] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { error, event } = validateInput(e, passwordSchema, true);
-    setError(error);
-    onChange(event);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === " ") {
-      e.preventDefault();
-    }
-  };
+  const { error, handleChange, handleKeyDown } = useInputValidation({
+    minLength: 6,
+    maxLength: 32,
+  });
 
   return (
     <div className={styles.inputWrapper}>
@@ -36,7 +26,7 @@ export const AuthPasswordInput = ({
         id="password-input"
         placeholder=" "
         value={value}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e, onChange)}
         onKeyDown={handleKeyDown}
         className={`${styles.input} ${error ? styles.error : ""}`}
         maxLength={32}
