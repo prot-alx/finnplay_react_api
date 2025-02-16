@@ -1,15 +1,15 @@
 @use "@/shared/styles" as *;
 
 .main {
-  margin: 75px 24px 0px 24px;
+  margin: 75px 1.5rem 0 1.5rem;
   @include desktop {
-    margin: 24px;
+    margin: 1.5rem;
   }
 }
 
 .content {
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
   justify-content: center;
 }
 
@@ -26,7 +26,7 @@
 @include desktop {
   .content {
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
   }
 
   .filters {

@@ -16,11 +16,6 @@
   object-fit: cover;
   border-radius: 8px;
   transition: opacity 0.3s ease-in-out;
-  will-change: opacity;
-  
-  &.loaded {
-    opacity: 1;
-  }
 }
 
 .skeleton {

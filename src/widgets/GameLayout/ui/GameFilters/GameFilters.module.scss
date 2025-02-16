@@ -3,10 +3,10 @@
 .filters {
   width: 100%;
   height: fit-content;
-  padding: 32px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
   border: 1px solid $blacks_50;
   border-radius: 8px;
 
@@ -27,11 +27,11 @@
     display: flex;
     align-self: center;
     background-color: $blacks_light;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
     color: $tech_links;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     order: 1;
   }
 }
