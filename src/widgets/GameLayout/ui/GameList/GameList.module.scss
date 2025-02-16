@@ -34,7 +34,19 @@
 .error {
   color: $tech_error;
   text-align: center;
-  padding: 20px;
+  padding: 2rem;
+}
+
+.errorDetails {
+  font-size: 0.875rem;
+  color: $blacks_semi;
+  margin-top: 0.5rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 2rem;
+  color: $blacks_semi;
 }
 
 .skeleton {

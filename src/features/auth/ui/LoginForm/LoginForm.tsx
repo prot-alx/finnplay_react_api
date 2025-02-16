@@ -6,6 +6,7 @@ import {
   AuthPasswordInput,
   Button,
   FormError,
+  Loader,
 } from "@/shared/ui";
 import styles from "./LoginForm.module.scss";
 
@@ -45,7 +46,7 @@ export function LoginForm() {
         <AuthPasswordInput value={password} onChange={handlePasswordChange} />
       </div>
       <Button type="submit" disabled={isLoading || !username || !password}>
-        {isLoading ? "Загрузка..." : "Login"}
+        {isLoading ? <Loader size="small" /> : "Login"}
       </Button>
       <FormError error={error} />
     </form>

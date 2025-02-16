@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, useLocation } from "react-router";
 import { useAuthStore } from "@/features/auth/model/store";
+import { Loader } from "@/shared/ui";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -18,7 +19,7 @@ export function ProtectedRoute({ children }: Readonly<ProtectedRouteProps>) {
   }, [location.pathname]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader size="large" global />;
   }
 
   if (!isAuth) {

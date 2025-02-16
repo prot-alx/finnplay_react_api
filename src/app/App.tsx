@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter } from "react-router";
 import { AppRouter } from "./router";
 import { useAuthStore } from "@/features/auth";
+import { Loader } from "@/shared/ui/Loader/Loader";
 import styles from "./App.module.scss";
 
 export function App() {
@@ -12,7 +13,7 @@ export function App() {
   }, [checkAuth]);
 
   if (!isInitialized) {
-    return <div>Loading...</div>;
+    return <Loader size="large" global />;
   }
 
   return (
