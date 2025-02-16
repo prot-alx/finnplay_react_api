@@ -1,8 +1,13 @@
+@use "@/shared/styles" as *;
+
 .card {
   width: 100%;
   position: relative;
   overflow: hidden;
   border-radius: 8px;
+  content-visibility: auto;
+  contain-intrinsic-size: 250px 180px;
+  background-color: $blacks_25;
 }
 
 .cover {
@@ -10,6 +15,12 @@
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
+  transition: opacity 0.3s ease-in-out;
+  will-change: opacity;
+  
+  &.loaded {
+    opacity: 1;
+  }
 }
 
 .skeleton {
@@ -18,12 +29,13 @@
   border-radius: 8px;
   background: linear-gradient(
     90deg,
-    rgba(227,227,227,1) 0%,
-    rgba(241,241,241,1) 50%,
-    rgba(227,227,227,1) 100%
+    rgba($blacks_50, 0),
+    rgba($blacks_25, 0.5),
+    rgba($blacks_50, 1),
   );
   background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  animation: shimmer 1.5s infinite linear;
+  pointer-events: none;
 }
 
 .hidden {
@@ -33,4 +45,8 @@
 @keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+.card picture img {
+  opacity: 1;
 }
