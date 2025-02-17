@@ -25,10 +25,10 @@
 
   @include desktop {
     display: flex;
-    align-self: center;
-    background-color: $blacks_light;
-    gap: 0.5rem;
     align-items: center;
+    align-self: center;
+    gap: 0.5rem;
+    background-color: $blacks_light;
     color: $tech_links;
     cursor: pointer;
     font-size: 1rem;
