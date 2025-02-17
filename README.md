@@ -17,29 +17,29 @@ npm install
 - Backend API: localhost:3000 (default)
 
 ## Compile and run the project
-# development
+### development
 ```bash
 npm run dev
 ```
 or 
-# production mode
+### production mode
 ```bash
 npm run prod
 ```
 
 ## Using Docker Compose
 
-# Start the application
+### Start the application
 ```bash
 docker compose up -d
 ```
 
-# View logs
+### View logs
 ```bash
 docker compose logs -f
 ```
 
-# Stop the application
+### Stop the application
 ```bash
 docker compose down
 ```
