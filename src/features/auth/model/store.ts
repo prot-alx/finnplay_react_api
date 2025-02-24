@@ -19,41 +19,46 @@ export const useAuthStore = create<AuthState>((set) => ({
   isInitialized: false,
   login: async (username: string, password: string) => {
     set({ isLoading: true, error: null });
-    try {
-      await loginUser({ username, password });
-      set({ isAuth: true, error: null });
-    } catch (err) {
-      set({ error: err.message, isAuth: false });
-      throw err;
-    } finally {
-      set({ isLoading: false });
+    const response = await loginUser({ username, password });
+
+    set({
+      isAuth: !response.error,
+      error: response.error?.message || null,
+      isLoading: false,
+    });
+
+    if (response.error) {
+      throw response.error;
     }
   },
 
   checkAuth: async () => {
     set({ isLoading: true, error: null });
-    try {
-      const isAuthenticated = await checkAuth();
-      set({ isAuth: isAuthenticated, isInitialized: true });
-      return isAuthenticated;
-    } catch {
-      set({ isAuth: false, isInitialized: true });
-      return false;
-    } finally {
-      set({ isLoading: false });
-    }
+    const response = await checkAuth();
+
+    set({
+      isAuth: !response.error,
+      error: response.error?.message || null,
+      isInitialized: true,
+      isLoading: false,
+    });
+
+    return !response.error;
   },
 
   logout: async () => {
     set({ isLoading: true, error: null });
-    try {
-      await logoutUser();
-      set({ isAuth: false, error: null, isInitialized: true });
-    } catch (err) {
-      set({ error: err.message });
-      return err;
-    } finally {
-      set({ isLoading: false });
+    const response = await logoutUser();
+
+    set({
+      isAuth: false,
+      error: response.error?.message || null,
+      isInitialized: true,
+      isLoading: false,
+    });
+
+    if (response.error) {
+      throw response.error;
     }
   },
 

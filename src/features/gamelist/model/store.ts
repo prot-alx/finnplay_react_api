@@ -16,7 +16,7 @@ interface GamesState {
   groups: Group[];
   filteredGames: Game[];
   isLoading: boolean;
-  error: string | null;
+  error: string[] | string;
   sort: SortType;
   filters: Filters;
   fetchGameData: () => Promise<void>;
@@ -42,22 +42,21 @@ export const useGamesStore = create<GamesState>((set, get) => ({
 
   async fetchGameData() {
     set({ isLoading: true, error: null });
-    try {
-      const data = await fetchGames();
-      set({
-        games: data.games,
-        providers: data.providers,
-        groups: data.groups,
-      });
-      // обновляем отфильтрованные игры после получения данных
-      get().updateFilteredGames();
-    } catch (err) {
-      set({
-        error: err instanceof Error ? err.message : "Error fetching games",
-      });
-    } finally {
-      set({ isLoading: false });
+    const response = await fetchGames();
+
+    if (response.error) {
+      set({ error: response.error.message });
+      return;
     }
+
+    set({
+      games: response.data.games,
+      providers: response.data.providers,
+      groups: response.data.groups,
+    });
+
+    get().updateFilteredGames();
+    set({ isLoading: false });
   },
 
   updateFilteredGames() {
