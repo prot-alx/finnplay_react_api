@@ -109,14 +109,19 @@ export const useGamesStore = create<GamesState>((set, get) => ({
 
       return true;
     });
-    
+
     if (sort) {
       filtered = filtered.sort((a, b) => {
-        if (sort === "a-z") return a.name.localeCompare(b.name);
-        if (sort === "z-a") return b.name.localeCompare(a.name);
-        if (sort === "newest")
+        if (sort === "a-z") {
+          return a.name.localeCompare(b.name);
+        }
+        if (sort === "z-a") {
+          return b.name.localeCompare(a.name);
+        }
+        if (sort === "newest") {
           return new Date(b.date).getTime() - new Date(a.date).getTime();
-        return 0;
+        }
+        return null;
       });
     }
 

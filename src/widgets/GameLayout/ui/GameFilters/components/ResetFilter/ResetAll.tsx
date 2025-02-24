@@ -5,7 +5,7 @@ export function ResetAll() {
   const { resetFilters } = useGamesStore();
 
   return (
-    <button className={styles.resetButton} onClick={() => resetFilters()}>
+    <button className={styles.resetButton} onClick={resetFilters}>
       Reset
     </button>
   );

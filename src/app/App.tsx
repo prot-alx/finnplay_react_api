@@ -10,7 +10,7 @@ export function App() {
 
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+  }, []);
 
   if (!isInitialized) {
     return <Loader size="large" global />;

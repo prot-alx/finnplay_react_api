@@ -13,7 +13,7 @@ export const GameCard = ({ game }: Readonly<GameCardProps>) => {
   const placeholderUrl = new URL(placeholder, import.meta.url).href;
 
   const handleImageLoad = () => setImageLoaded(true);
-  
+
   const handleImageError = () => {
     if (!imageError) {
       setImageError(true);
