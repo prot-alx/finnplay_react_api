@@ -6,6 +6,8 @@ interface FormErrorProps {
 
 export const FormError = ({ error }: FormErrorProps) => {
   if (!error) return null;
+
+  if (error === "No token provided") return null;
   
   if (Array.isArray(error)) {
     return (
