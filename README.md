@@ -43,3 +43,15 @@ docker compose logs -f
 ```bash
 docker compose down
 ```
+
+### Mock user 1:
+```login: player1
+```
+```password: player1
+```
+
+### Mock user 2:
+```login: player2
+```
+```password: player2
+```
