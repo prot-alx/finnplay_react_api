@@ -48,8 +48,10 @@ docker compose down
 ```plaintext
 login: player1
 password: player1
+```
 
 ### Mock user 2:
 ```plaintext
 login: player2
 password: player2
+```
